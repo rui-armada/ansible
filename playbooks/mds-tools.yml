@@ -1,0 +1,28 @@
+---
+- name: This playbook is for setup the dashboard machines
+  hosts: mds-tools
+  # TODO: The packages needs to be updated before of any task or role
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}"}
+    - { role: users, tags: ['add-users'] }
+    - network
+    - odbc
+    - java-oracle
+    - jenkins
+  tasks: 
+    - name: Update all packages to the latest version
+      apt: upgrade=dist
+    
+    - name: Install R packages
+      apt: name=r-base state=present
+    
+    - name: Install Git packages
+      apt: name=git state=present
+    
+    - name: Create uwsgi directories
+      file: 
+        path: /run/uwsgi/bi-api
+        state: directory
+        mode: 0755
+        owner: jenkins
+        group: jenkins

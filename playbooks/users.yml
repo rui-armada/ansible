@@ -1,0 +1,36 @@
+- hosts: all
+  remote_user: ansible
+  become: true
+  vars_files:
+    - ../inventories/global_users.yml
+  tasks:
+    - name: Creating users on CentOS servers
+      user:
+        name: "{{ item.username }}"
+        password_lock: false
+        state: "{{ item.state }}"
+        comment: "{{ item.comment }}"
+        createhome: true
+        group: wheel
+        append: true
+      with_items: "{{ global_users }}"
+      when: ansible_facts['distribution'] == "CentOS"
+
+    - name: Creating users on Ubuntu servers
+      user:
+        name: "{{ item.username }}"
+        password_lock: false
+        state: "{{ item.state }}"
+        comment: "{{ item.comment }}"
+        createhome: true
+        groups: sudo
+        append: true
+      with_items: "{{ global_users }}"
+      when: ansible_facts['distribution'] == "Ubuntu"
+
+    - name: Placing SSH Keys to Authorized Keys
+      authorized_key:
+        user: "{{ item.username }}"
+        key: "{{ item.ssh_key }}"
+      with_items: "{{ global_users }}"
+      when: (item.state == 'present') or (item.ssh_key is defined)

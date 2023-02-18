@@ -1,0 +1,21 @@
+create_users:
+  - username: xcsetup
+    comment: "XCally setup user"
+    ssh_key:
+      - ""
+    shell: /bin/bash
+
+  - username: xcuser
+    comment: "XCally connection user"
+    ssh_key:
+      - ""
+    shell: /usr/sbin/nologin
+
+  - username: dleite
+    comment: "Daniel Leite"
+    ssh_key: 
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7KZz7eWIgjjSquUHRCLXj5DeoYWbzQhKDhR342kYQ54BTfX45sD2BfOk4WbMw8qtFIijmCVPZu+QRsQKCaKW+dhTlaWNH2qfCzDYSoOu7tEhgIFK1xz6/pk893OFMh6iSKyINzn902Yip1ZWc1ivr1UscOtmFS7RD+P7pEcWayFWnhaqWzh3duuX8e4Bkk/Rhw3CMAnQ+0lDMU1c3z8wYyU2UWk+9HtEQP9LGNNs/r+bEu+W2o2vvU8iki6yyXzwm7XTuQqeXkU0JcwhHHttNOiOu6bk2dnWnlnAO8ha9P91IvqeRcod7+z2JdBwwpZMusR7lbpHCSOqxZdbNFGvL danielleite@danielleite"
+    shell: /bin/bash
+
+delete_users:
+  - jumia

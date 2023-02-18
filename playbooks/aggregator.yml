@@ -1,0 +1,40 @@
+---
+- name: This playbook is for setup the aggregator machines
+  hosts: aggregators
+  # TODO: The packages needs to be updated before of any task or role
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}"}
+    - { role: users, tags: ['add-users'] }
+    - network
+#    - { role: stunnel, tags: ['stunnel'] }
+
+  tasks: 
+    - name: Update all packages to the latest version
+      apt: upgrade=dist
+   
+    - name: Create .ssh dir on xcuser
+      file:
+        path: /home/xcuser/.ssh
+        state: directory
+        owner: xcuser
+        group: xcuser
+        mode: "u=rwx,g=wrx,o=r"
+    - name: Create authorized_keys file on xcuser
+      file:
+        path: /home/xcuser/.ssh/authorized_keys
+        state: touch
+        owner: xcuser
+        group: xcuser
+        mode: "u=rw,g=wr,o=r"
+
+# TODO: criar key para o user xcsetup 
+
+# TODO: Add "GatewayPorts clientspecified" to the end of the file /etc/ssh/sshd_config
+
+# TODO: Add iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 22201 -j REDIRECT --to-port 22
+#
+# iptables-save > /etc/iptables.rules
+# editor /etc/network/if-pre-up.d/iptables
+#       #!/bin/sh
+#       /sbin/iptables-restore < /etc/iptables.rules
+# chmod +x /etc/network/if-pre-up.d/iptables

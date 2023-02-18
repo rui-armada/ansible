@@ -1,0 +1,8 @@
+---
+- hosts: redundant-haproxy
+  #gather_facts: false
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}", tags: ['common'] }
+    - { role: users, tags: ['add-users'] }
+    - { role: keepalived, tags: ['keepalived'] }
+    - { role: haproxy-1.8, tags: ['haproxy-1.8'] }

@@ -1,0 +1,39 @@
+---
+- name: This playbook is for setup the bigdata machines
+  hosts: BigData
+
+  roles:
+    - { role: users, tags: ['add-users'] }
+  
+  tasks:
+    - name: Allow sudo without password
+      lineinfile: dest=/etc/sudoers state=present regexp='^%wheel\s+ALL\=' line='%wheel ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'
+    
+    - name: Change the hostname to our standard
+      hostname: name="{{ hostvars[inventory_hostname].fqdn }}"
+      tags: set_hostname
+
+    - name: Install Common software
+      yum : 
+        name: "{{ packages }}"
+        update_cache: yes
+      vars: 
+        packages:
+          - vim
+          - telnet
+          - tcpdump
+
+    - name: Add DNS server on file /etc/dhcp/dhclient.conf
+      lineinfile: 'line="supersede domain-name-servers 10.93.100.32;" dest=/etc/dhcp/dhclient.conf state=present'
+      notify: Restart network    
+      tags: add_dns_server
+  
+  handlers:
+    - name: Restart network
+      service:
+        name: network
+        state: restarted
+
+
+
+

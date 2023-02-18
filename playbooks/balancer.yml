@@ -1,0 +1,19 @@
+---
+- name: This playbook is for setup the aggregator machines
+  hosts: balancers
+  # TODO: The packages needs to be updated before of any task or role
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}" }
+    - { role: users, tags: ['add-users'] }
+    - { role: network, tags: ['network'] }
+
+  tasks: 
+    - name: Update all packages to the latest version
+      apt: upgrade=dist
+    
+    - name: Install HAproxy packages
+      apt: name=haproxy state=present
+    
+ #   - name: Permite client choose the bind interface
+ #     shell: echo "GatewayPorts clientspecified" >> /etc/sshd/sshd_config
+ #     notify: Restart sshd deamon

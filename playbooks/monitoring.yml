@@ -1,0 +1,126 @@
+---
+- name: This playbook is for setup the monitoring machine
+  hosts: monitor
+  # TODO: The packages needs to be updated before of any task or role
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}"}
+    - { role: users, tags: ['add-users'] }
+    - network
+    - { role: mariadb-server, tags: ['mariadb-server'] }
+    - { role: java-oracle, tags: ['java'] }
+
+  tasks:
+    - name: Update repostiories
+      apt: update_cache=yes cache_valid_time=864000
+
+    - name: Download Zabbix .deb package
+      get_url: 
+        url: http://repo.zabbix.com/zabbix/3.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.2-1+xenial_all.deb
+        dest: /home/hsilva/zabbix-release_3.2-1+xenial_all.deb
+
+    - name: Install Zabbix .deb package
+      apt:
+        deb: /home/hsilva/zabbix-release_3.2-1+xenial_all.deb
+        update_cache: yes
+    
+    - name: Download Zabbix-Opsginie .deb package
+      get_url: 
+        url: https://s3-us-west-2.amazonaws.com/opsgeniedownloads/repo/opsgenie-zabbix_2.19.2_all.deb
+        dest: /home/hsilva/opsgenie-zabbix_2.19.2_all.deb
+    
+    - name: Install Zabbix-Opsginie .deb package
+      apt:
+        deb: /home/hsilva/opsgenie-zabbix_2.19.2_all.deb
+        update_cache: yes
+
+# ate aqui tudo feito com sucesso
+# next steps
+
+# service apache2 reload
+# create database zabbix character set utf8 collate utf8_bin;
+# grant all privileges on zabbix.* to zabbix@localhost identified by 'JCcvUM5HRuTZS8vkXv9MTxs';
+# zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -uzabbix -p zabbix
+# vi /etc/zabbix/zabbix_server.conf
+# systemctl enable zabbix-server
+# systemctl restart zabbix-server
+# update-rc.d zabbix-server enable
+# service apache2 restart
+
+
+
+    # - name: Install Zabbix packages
+    #   apt: name={{ item }} state=present
+    #   with_items:
+    #     - apache2-bin 
+    #     - fping
+    #     - libapache2-mod-php
+    #     - libapache2-mod-php7.0
+    #     - libapr1
+    #     - libaprutil1 
+    #     - libaprutil1-dbd-sqlite3 
+    #     - libaprutil1-ldap 
+    #     - libcurl3 
+    #     - libiksemel3 
+    #     - libltdl7 
+    #     - liblua5.1-0 
+    #     - libodbc1 
+    #     - libopenipmi0 
+    #     - libsensors4 
+    #     - libsnmp-base 
+    #     - libsnmp30 
+    #     - libssh2-1
+    #     - php-common 
+    #     - php-gd 
+    #     - php-ldap 
+    #     - php-mysql 
+    #     - php7.0-cli 
+    #     - php7.0-common 
+    #     - php7.0-gd 
+    #     - php7.0-json 
+    #     - php7.0-ldap 
+    #     - php7.0-mysql 
+    #     - php7.0-opcache 
+    #     - php7.0-readline 
+    #     - snmpd 
+    #     - ttf-dejavu-core 
+    #     - zabbix-server-mysql
+    #     - zabbix-frontend-php
+
+    # - name: Zabbix configure nginx vhost
+    #   template: 
+    #     src: zabbix.conf.j2
+    #     dest: /etc/nginx/sites-available/zabbix.conf
+    #     owner: root
+    #     group: root
+    #     mode: 0644
+    #   notify: restart nginx
+        
+    # - name: "Configure zabbix-web"
+    #   template: 
+    #     src: zabbix.conf.php.j2
+    #     dest: /etc/zabbix/web/zabbix.conf.php
+    #     owner: root
+    #     group: root
+    #     mode: 0644
+
+    # - name: Install python-pip
+    #   apt: name=python-pip state=present
+    
+    # - name: Install python mysqldb module
+    #   pip: name=mysql-python state=present
+
+    # - name: Create zabbix user on database
+    #   mysql_user: 
+    #     name: zabbix
+    #     password: DXdKRkyK5pKSf4DCyfFGTKk
+    #     priv: 'zabbix.*:ALL'
+    #     state: present 
+
+    # - name: Create zabbix user
+    #   mysql_db: name=zabbix state=present
+
+    # - name: Create zabbix database schema
+    #   mysql_db:
+    #     name: zabbix
+    #     state: import
+    #     target: /usr/share/doc/zabbix-server-mysql/create.sql.gz

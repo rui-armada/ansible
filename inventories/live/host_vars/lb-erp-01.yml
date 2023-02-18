@@ -1,0 +1,45 @@
+
+interfaces_ether_interfaces:
+  - device: eth0
+    bootproto: static
+    address: "{{ ansible_host }}"
+    netmask: 255.255.255.0
+    network: 10.90.100.0
+    broadcast: 10.90.100.255
+    gateway: 10.90.100.254
+    dnsnameservers: 10.90.100.31 10.90.100.32
+    dnssearch: jumia.local
+  - device: eth0:1
+    bootproto: static
+    address: 10.90.100.130
+    netmask: 255.255.255.0
+  - device: eth0:2
+    bootproto: static
+    address: 10.90.100.131
+    netmask: 255.255.255.0
+  - device: eth0:3
+    bootproto: static
+    address: 10.90.100.132
+    netmask: 255.255.255.0 
+  - device: eth0:4
+    bootproto: static
+    address: 10.90.100.133
+    netmask: 255.255.255.0
+  - device: eth0:5
+    bootproto: static
+    address: 10.90.100.134
+    netmask: 255.255.255.0
+  - device: eth0:6
+    bootproto: static
+    address: 10.90.100.135
+    netmask: 255.255.255.0
+  - device: eth0:7
+    bootproto: static
+    address: 10.90.100.136
+    netmask: 255.255.255.0
+  - device: eth0:8
+    bootproto: static
+    address: 10.90.100.137
+    netmask: 255.255.255.0 
+
+    

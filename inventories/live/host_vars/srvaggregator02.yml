@@ -1,0 +1,53 @@
+---
+self_sign_certificate:
+    - hostname: "{{ inventory_hostname }}"
+      countryName: PT
+      state: Porto
+      locality: Porto
+      organizationName: Jumia
+      organizationUnit: Business Intelligence
+      commonName: "{{ inventory_hostname }}"
+      emailAddress: sysadmins.microsoft@jumia.com
+---
+stunnel_conf:
+  - name: bob-mkt-eu1
+    client: true
+    accept: 40290
+    connect: 52.48.171.99:23100
+  - name: bob-mkt-eu2
+    client: true
+    accept: 40291
+    connect: 52.48.171.99:23200
+  - name: bob-mkt-eu3
+    client: true
+    accept: 40292
+    connect: 52.48.171.99:23300
+  - name: sc-mkt-eu
+    client: true
+    accept: 40293
+    connect: 52.48.171.99:23400
+  - name: bob-mkt-as1
+    client: true
+    accept: 40280
+    connect: 52.76.253.5:23200
+  - name: bob-mkt-as2
+    client: true
+    accept: 40281
+    connect: 52.76.253.5:23300
+  - name: sc-mkt-as
+    client: true
+    accept: 40282
+    connect: 52.76.253.5:23400
+---
+create_users:
+  - username: xcsetup
+    comment: "XCally setup user"
+    ssh_key:
+      - ""
+    shell: /bin/bash
+
+  - username: xcuser
+    comment: "XCally connection user"
+    ssh_key:
+      - ""
+    shell: /usr/sbin/nologin

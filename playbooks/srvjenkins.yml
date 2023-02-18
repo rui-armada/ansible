@@ -1,0 +1,17 @@
+---
+- name: This playbook is for setup jenkins machines
+  hosts: srvjenkins
+  # TODO: The packages needs to be updated before of any task or role
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}"}
+    - { role: users, tags: ['add-users'] }
+    - network
+    - java-oracle
+    - jenkins
+    - { role: gcloud-sdk, tags: ['gcloud'] }
+  tasks: 
+    #- name: Update all packages to the latest version
+    #  apt: upgrade=dist
+   
+    - name: Install Git packages
+      apt: name=git state=present

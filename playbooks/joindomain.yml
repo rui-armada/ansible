@@ -1,0 +1,8 @@
+---
+- hosts: ad_members
+  become: yes
+  roles:
+    #- { role: common, common_hostname: "{{ inventory_hostname }}"}
+    - { role: users, tags: ['add-users'] }
+    #- network Centos 7 uses nm, this is incompatible
+    - { role: joindomain, tags: ['joindomain'] }

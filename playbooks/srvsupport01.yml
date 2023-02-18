@@ -1,0 +1,43 @@
+---
+- name: This playbook is for setup the support machines
+  hosts: all
+  # TODO: The packages needs to be updated before of any task or role
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}" }
+    - { role: users, tags: ['add-users'] }
+    - { role: network, tags: ['network'] }
+
+  tasks: 
+    - name: Update all packages to the latest version
+      apt: upgrade=dist
+
+    - name: Install requitements
+      apt: name={{item}} update_cache=yes
+      with_items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    
+    - name: Add Docker GPG key
+      apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+    - name:    Add Docker APT repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+      
+    - name: Install Docker
+      apt: name=docker-ce
+    
+    - name: Add Docker GPG key
+      apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+    - name:    Add Docker APT repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+  
+    - name: Install Docker and docker compose
+      apt: name={{ item }}
+      with_items:
+        - docker-ce
+        - docker-compose

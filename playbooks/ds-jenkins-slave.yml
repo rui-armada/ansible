@@ -1,0 +1,70 @@
+---
+- name: This playbook is for setup the dashboard machines
+  hosts: ds-jenkins-slave01, ds-jenkins-slave02
+  
+  roles:
+    - { role: common, common_hostname: "{{ inventory_hostname }}"}
+    - { role: users, tags: ['add-users'] }
+    - network
+    - odbc
+    - java-oracle
+    - {role: anaconda, 
+       anaconda_install_packages_conda_forge: [
+        "google-cloud-bigquery",
+        "google-cloud-storage",
+        "google-api-python-client",
+        "pandas",
+        "pandas-gbq",
+        "scikit-surprise",
+        "matplotlib",
+        "pysftp",
+        "httplib2",
+        "oauth2client",
+        "implicit"],
+       anaconda_install_packages_anaconda: [
+        "numpy",
+        "jupyter",
+        "scipy",
+        "scikit-learn",
+        "requests"],
+       tags: ['anaconda']
+}
+  tasks: 
+    - name: Update all packages to the latest version
+      apt: upgrade=dist
+    
+#echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" >> /etc/apt/sources.list
+#      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+#      apt update
+        
+    - name: Install R packages
+      apt: name=r-base state=absent
+    
+    - name: Install Git packages
+      apt: name=git state=present
+
+    - name: Install PIP3 packages
+      apt: name=python3-pip state=present
+
+    - name: Install BigQuery dependeny packages
+      apt : 
+        name: "{{ packages }}"
+        update_cache: yes
+        cache_valid_time: 3600
+      vars: 
+        packages:
+          - libssl-dev
+          - libcurl4-openssl-dev
+      
+    - name: Upgrade pip
+      pip: 
+        name: pip
+        extra_args: --upgrade
+
+    - name: Install pip3 packages
+      pip: 
+        name:
+          - jupyter
+
+
+    
