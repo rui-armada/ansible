@@ -1,5 +1,0 @@
-zabbix_agent_userparameters:
-  - mssql.instance.discovery[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Program Files\Zabbix Agent\scripts\Get-InstanceDatabases.ps1" -fileType $1
-  - UserParameter=mssql.instance.db.currentSpace[*],SQLCMD -h -1 -S $1\$2 -d $3 -i "C:\Program Files\Zabbix Agent\scripts\SQL\Get-DatabaseSpace.sql" -v result_type=currentSpace logical_name=$4
-  - UserParameter=mssql.instance.db.usedSpace[*],SQLCMD -h -1 -S $1\$2 -d $3 -i "C:\Program Files\Zabbix Agent\scripts\SQL\Get-DatabaseSpace.sql" -v result_type=usedSpace logical_name=$4
-  - UserParameter=mssql.instance.db.freeSpace[*],SQLCMD -h -1 -S $1\$2 -d $3 -i "C:\Program Files\Zabbix Agent\scripts\SQL\Get-DatabaseSpace.sql" -v result_type=freeSpace logical_name=$4

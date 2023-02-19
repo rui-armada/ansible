@@ -1,9 +1,0 @@
-stunnel_conf:
-  - name: bd-africa
-    client: true
-    accept: 40490
-    connect: 52.16.211.240:33304
-  - name: bd-asia
-    client: true
-    accept: 40480
-    connect: 52.16.211.240:33305

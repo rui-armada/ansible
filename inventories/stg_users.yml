@@ -1,44 +1,8 @@
 ---
 # Users that will be created on all systems
 global_users:
-  - username: jcampos
-    comment: "Joao Campos"
-    ssh_key:
-      "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAj5UI/pkR2goqOFqD20Dzdbk5XI8U5IX8SIFROAWk8ebQKBlxswNuLvSw/8lwqJxGFrWsQlKegVs0frqKV8z1+gh3taHkXg/CpSnHYgioEe+r7TSMylebHW52UGLiCnGHirmPDCW7LcJB5eyufTlCzo5N8XqErCr7MNLxbEWhLhXyWbhds9S6FsNRpu6YBHBxlbTSEZRb4udRi78BZHW0H6W3pQdkG1pyiHzcKJwaItygino6R7GOHy6mMdgBZqEyMWW9YftJ8n6hwrT/GhWS0KDldSFcsPsJvKLxdw31L3a07rtDaXbakePppP19F0reT2tNDWDDzsKAKpZ6bDM4OQ=="
-    state: present
-
-  - username: lribeiro
-    comment: "Luis Ribeiro"
-    ssh_key:
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTG2VhuZjdFnshRgV+2ZWmaMNBPOzidn719J7QkYeOxbhVmGt1Hl+o82OnBunGRKeIc+56qrCnbLwMMbfcEYDUzh0WXabTZPY4SsHOHr9neDzyDry88rXjWKZpYaR+DJ38zFP9JpMYP4oxk3xu+/eOuZcJKwUDt1nKnJVsjeZwsryaDYO53N7gniWtUgP8JD0Gr+lwj77MsgOVA/EgtrM71/SP03LNAnpdU3RD4lsUAEVkvlanUTeKnMFtwA+5hIj3Zl6LO7u11OaY7Lt0Oa60LZAmp3C3j7YH/XmzfraWlXBsFdTi8OurG/EL9fUaATpDo/mbZhFBcl837bojLBhp"
-    state: present
-
-  - username: jveiga
-    comment: "José Veiga"
-    ssh_key:
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHcWj6Yku23RxKV2in2DyB5JlB2/vbPBbWwozJ8rMLQKaWWN5y5gxAZSAUqn+WIfKMY04Qj9mp/koabEZjGLPxVFQLxHqSxzVkv0gu3V1Mt4clh1OMjc9OMvFAdBP1Jmu+rA8uOsi65IRU/CNZAODl7ju+SNf+VEEFbhEOtftb7cG2nI2EaXHheMX6ytfLoXYHGEnv2V5DYIq6NU5xHnkTonuJr3FHaxR4nu1Z34RLPUrQRjnmqK3Q17xwyzQz9rxKV0ZNnrICeFLCbGxbFLGu3PJKl+DNeTSn8IwZ3luhJagAhr4KumMmdt/WA0poiHhDgqwHEtg1ZrxoXNUd79U+jIYpSCNd8aUHU3Yx7OCuRv94RyairbaSVLeNeBT3RWZaqCv4PiNmRV7NJv4Qm61n/F7RZo0PQxPEfLYr/FZcCyDcYzsEpB74cw73Iwp8vPFRG22ftnrrEgtZbFbwHBMPKF22ulL4YVazj9CvfYE12K1ukXnto8Nr8CaLB8uD/I8="
-    state: present
-
-  - username: jsilva
-    comment: "João Silva"
-    ssh_key:
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCWD+vZ1gAbf0dMCzMg24emC/xzEjlhMLx89A5fANgi8OflpwpzW9wnYHs6GQRCMfy3iu9oesHiO7MWrpoaE3R+l9WgNd7O9n5oBtBg5j+Nzpe9rD1IUzEaEuYlgIs4yOBQJ6p17U/EDzCFuA6LRohUazyEr8aXEu/FCmtzvY+FwRENGKgcslDAwOgH4zD/kOIE4rDCCZ4rxgdz2BKcAYLIDM+mRgbPoMqmI4A46WzmUCQG8WM4x+vh0o55UZwhWFiH6Bem3VpgREEXRGnn/Q9z/YfkKXcW59HWE1NzDod2ETizEtu3NI2wAw9GwFOECUzCCC9lgecAQYv3rnTykMPI0xCwoNomMtwGhDmjF0mP+OF5GxvT2qnuB+ByQFv+7WKX4N3XCYp7un0n6gQCBp6UWuHJQv/a5rtrIbwInS2mB6LHaWDLe8uHcUGDwH9KieepJnGoq38ZtpJEdjAgjkZs7yKhl/dq0SSAtan9wb+9Q3xjt85GVaZ74adpIGMAgUk="
-    state: present
-
-  - username: lsilva
-    comment: "Luis Silva"
-    ssh_key:
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDW6iYftuoOHu061YD6pSZxwq/bPAv30LUYchnpW/58qSF4ITgWm356q9MMg7Qrttf1gmkHUkWaJKexCROd6vhxcqsgsNfCvnGuXE72gaxpgg2M5S3z8nywVAFyJJJu+tP9jFnKNdK+KdaCnIbaItO4UkGBq+GhQ7ZYn0wGQ3Plj/ZG1bns9cxJM/UpDp2yC6Jo9OOe6ONW6rVssmh3F5kL2adqKF9a6QSPQdzk83vlIK0cFXepprFPNcKZV/a8UPXg8bENeMQfVbbz1Uzr1p4IDmV3RvXemqKhcVbFbkJ80VNLapsIhCcMpC5ivkNG8XcJdSlsHXJNhKiFW1ygGixieYTIilnxwYZuigIZSvdt317wLQClzAUtVk3rEP6L3XvbwoU0JdNRmp9L/YgHViap7bU2A+pdLYOBLhv5dv46S+ySaLYcnTc5P47K3b68siH9sZ9UWWqttTVMELwvzxKhzBxJiRz29eYUX/22GOFhz5o9lLtygJBTIJzzo47lggM="
-    state: present
-
   - username: rarmada
     comment: "Rui Armada"
     ssh_key:
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/Qqy2oo49wH8pnakenUP79sCGjqlcKeiwKgab2+Xz4OzmZntEMDzg9oS7W4i6GeVEdOTGXRynBJ8XJnvFXU5hH85FijaS1UaKWyHXxGUqBhbHMBGOf0RqKcYWd50lPIrqhkX5zFxSm9yKjbgkrbpsGHOf+RRbfknpSE/7ScfuajjYmUY4lK0LsmqNTPXYFSKFW9DoIJYabu5LlpwkePN8njDpSWXTR7+h/B8qdjTSygcmW7AvB12Nfdd3E3gmyv/SLNEnIO1oDZ/jE3A+6qIQ2TfdJypav9/tVxhRl00ct7Ms5Am5pdspHVxJDCtO26CO5h+3liLS3mCQq6k6Gdr8zj3RtjBZr9F1iCXBI3A74wqmVMawQ08SZ/woYyAkCkY+t0KjImZMtBkQr1eGsG6wnLgtBVolB688GLDP6FUAe+buWkz6fCft1f4bIq1yEzFDQSvFUGpY0RPgDCRu5QSJ4rg2sE2AVq6ammPCJnFJia1HaLVaalLdE+C1mm152hE="
-    state: present 
-
-  - username: bleite
-    comment: "Bernardo Leite"
-    ssh_key:
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCjFOLqHeqNhoOkhNuBU9Cnhe0uYatc9OvZFnHkv43S9h6wOQkT5UY7l6KUHzDsSGBr6dVL8D0wzVqumNZbsfpB9S4HjQDFcjwKnjgRS2buqnAl2fNJhNi2zTROW8VCpQ0g8UodPbdaSxF1PVTg36tBUZTxF31NgOjGNy3q8B/1XErpZ2BtFTqDlBc3Cchuxc9kiTWhwkuBip84JgA0x+Pd9xB/VXQ7LuQktd8eQU4yjYFeFwaPqXw5qt3GELe7cKbpWLmhIcIJ4/isUfnj2oI74fEX+pSjB/PjfGLT2hDDHRjNJGO8jH9mQrLSsmfy40CM0hO2CCJ2TVs7b0zw+a0efpqvTxj2tiVREb+klpQSgVFkwXYb/gsCbGl3KFCjPUpzzEPFLPWbYyOQwvDbM0xROXnXV+92uWCk2zgkoWKGW/k/IGOW/Sv3/r50qURjdVqQL90SgMG0h3zXbCLi2Erujhoz1yjuCwi90mFSIB4Zut7pvI/w8aUXJmQQROuCoOU="
     state: present 

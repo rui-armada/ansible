@@ -6,7 +6,4 @@
 #   - You can enter hostnames or ip addresses
 #   - A hostname/ip can be a member of multiple groups
 
-10.90.150.157
-10.90.150.150
-10.90.150.187
-10.90.150.40
+localhost
